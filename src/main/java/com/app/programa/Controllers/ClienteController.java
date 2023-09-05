@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.programa.Models.Cliente;
 import com.app.programa.Repositories.ClienteRepository;
 import com.app.programa.Services.ClienteService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @RestController
 @RequestMapping("cliente")
@@ -34,11 +35,11 @@ public class ClienteController {
         return servico.listarClientes();
     }
     @PostMapping
-    public Cliente salvar(@RequestBody Cliente cli){
+    public Cliente salvar(@JsonFormat @RequestBody Cliente cli){
         return repo.save(cli);
     }
     @PutMapping
-    public ResponseEntity<?> editar(@RequestBody Cliente cli){
+    public ResponseEntity<?> editar(@JsonFormat @RequestBody Cliente cli){
         return servico.editarCliente(cli);
     }
     @GetMapping("/contar/{id}")
