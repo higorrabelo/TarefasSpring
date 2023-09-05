@@ -84,5 +84,13 @@ function formCadastro(){
         }
     }
     ajax.send();
+
+    var usuario = document.getElementById('usuario')
+
+usuario.addEventListener("submit",(evento)=>{
+    evento.preventDefault()
+})
+
 }
+
 

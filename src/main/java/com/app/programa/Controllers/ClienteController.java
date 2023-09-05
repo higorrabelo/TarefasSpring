@@ -35,11 +35,11 @@ public class ClienteController {
         return servico.listarClientes();
     }
     @PostMapping
-    public Cliente salvar(@JsonFormat @RequestBody Cliente cli){
+    public Cliente salvar(@RequestBody Cliente cli){
         return repo.save(cli);
     }
     @PutMapping
-    public ResponseEntity<?> editar(@JsonFormat @RequestBody Cliente cli){
+    public ResponseEntity<?> editar(@RequestBody Cliente cli){
         return servico.editarCliente(cli);
     }
     @GetMapping("/contar/{id}")
