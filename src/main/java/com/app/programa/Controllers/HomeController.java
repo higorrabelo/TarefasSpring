@@ -1,6 +1,5 @@
 package com.app.programa.Controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,8 +18,8 @@ public class HomeController {
     private TarefaService service;
 
     @GetMapping
-    public ResponseEntity<?> listarTarefas(){
-        return service.listar();
+    public String listarTarefas() {
+        return "Oi";
     }
-    
+
 }

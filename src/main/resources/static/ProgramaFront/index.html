@@ -10,16 +10,26 @@
     
    <h1 class="header" id="titulo">Utilizando API Agenda de Tarefas</h1>
 
-    <div id="conteudo">
+   <div class="principal">
+
+    
+    <select name="" id="selection"></select>
+    <input class="inputs" id="busca" type="text" placeholder="Buscar Usuario">
+    <button id="btnBusca" onclick="buscaPorNome()">Buscar</button>
+    
+    
+    <div id="conteudo" class="conteudo">
 
     </div>
+    
+   </div>
    
 
     <div class="opcoes">
-        <button id="btn">Mostrar Usuários</button>
+        <button id="btn" onclick="mostrarCLientes()">Mostrar Usuários</button>
         <button id="btn2" onclick="mostrarTarefas()">Mostrar Tarefas</button>
         <button id="cadastraUsuario" onclick="formCadastro()">Cadastrar Usuário</button>
-        <button id="cadastraTarefa">Cadastrar Tarefa</button>
+        <button id="cadastraTarefa" onclick="formtarefa() ">Cadastrar Tarefa</button>
     </div>
 
     <script src="javascript.js"></script>

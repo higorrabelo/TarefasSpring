@@ -1,22 +1,14 @@
-<form id="usuario" class="formulario" action="http://localhost:8080/cliente"  method="POST">
+<body>
+    <form class="formulario" action="" id="formUsuario">
 
-    <label for="">Usuario</label>
-    <input type="text" placeholder="Nome do Usuário" name="nome">
-    <label for="">Senha</label>
-    <input type="password" placeholder="Sua Senha" name="senha">
-    <label for="">Email</label>
-    <input type="email" placeholder="Email do Usuário" name="email">
-    <input type="submit" value="Cadastrar usuário">
+        <label for="">Usuario</label>
+        <input type="text" placeholder="Nome do Usuário" id="nome" name="nome">
+        <label for="">Senha</label>
+        <input type="password" placeholder="Sua Senha" id="senha" name="senha">
+        <label for="">Email</label>
+        <input type="email" placeholder="Email do Usuário" id="email" name="email">
+        <button id="usuario" onclick="cadastrarCliente()">Cadastrar</button>
+    
+    </form>
 
-</form>
-
-<script>
-        var usuario = document.getElementById('usuario')
-        usuario.addEventListener("submit",(evento)=>{
-    evento.preventDefault()
-
-
-
-})
-
-</script>
+</body>

@@ -1,5 +1,6 @@
 package com.app.programa.Models;
 
+import java.io.Serializable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,23 +11,25 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="clientes")
-public class Cliente {
-    
+@Table(name = "clientes")
+public class Cliente implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotEmpty
     private String nome;
 
     @NotEmpty
     private String senha;
 
-    @Email
+    @NotEmpty
     private String email;
 
-    public Cliente(){
+    public Cliente() {
 
     }
 
@@ -98,8 +101,5 @@ public class Cliente {
     public String toString() {
         return "Cliente [id=" + id + ", nome=" + nome + ", senha=" + senha + ", email=" + email + "]";
     }
-    
-    
-
 
 }

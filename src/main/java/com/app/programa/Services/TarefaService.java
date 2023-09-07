@@ -17,46 +17,54 @@ public class TarefaService {
 
     @Autowired
     private Mensagens mensagem;
-    
-    public ResponseEntity<?> listar(){
-        if(repo.count()==0){
+
+    public ResponseEntity<?> listar() {
+        if (repo.count() == 0) {
             mensagem.setMensagem("Sem Registros de Tarefa");
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(repo.findAll(),HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
         }
     }
-    public ResponseEntity<?> salvar(Tarefa tarefa){
-        if(tarefa.getTitulo()==""){
+
+    public ResponseEntity<?> salvar(Tarefa tarefa) {
+        if (tarefa.getTitulo() == "") {
             mensagem.setMensagem("Título não inserido");
-            return new ResponseEntity<>(mensagem,HttpStatus.BAD_REQUEST);
-        }
-        else if(tarefa.getDescricao()==""){
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        } else if (tarefa.getDescricao() == "") {
             mensagem.setMensagem("Tarefa não Possui Descrição");
-            return new ResponseEntity<>(mensagem,HttpStatus.BAD_REQUEST);
-        }else{
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        } else {
             java.sql.Date data = new java.sql.Date(new java.util.Date().getTime());
             tarefa.setDataCadastro(data);
-            return new ResponseEntity<>(repo.save(tarefa),HttpStatus.OK);
-        }    
+            return new ResponseEntity<>(repo.save(tarefa), HttpStatus.OK);
+        }
     }
-    public ResponseEntity<?> editar(Tarefa tarefa){
+
+    public ResponseEntity<?> editar(Tarefa tarefa) {
         int i = Integer.parseInt(tarefa.getId().toString());
-        if(repo.countById(i)==0){
+        if (repo.countById(i) == 0) {
             mensagem.setMensagem("Identificação não encontrada");
-            return new ResponseEntity<>(mensagem,HttpStatus.BAD_REQUEST);
-        }else if(tarefa.getTitulo()==""){
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        } else if (tarefa.getTitulo() == "") {
             mensagem.setMensagem("Título não inserido");
-            return new ResponseEntity<>(mensagem,HttpStatus.BAD_REQUEST);
-        }else if(tarefa.getDescricao()==""){
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        } else if (tarefa.getDescricao() == "") {
             mensagem.setMensagem("Tarefa não Possui Descrição");
-            return new ResponseEntity<>(mensagem,HttpStatus.BAD_REQUEST);
-        }else if(tarefa.getDataCadastro()==null){
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        } else if (tarefa.getDataCadastro() == null) {
             java.sql.Date data = new java.sql.Date(new java.util.Date().getTime());
             tarefa.setDataCadastro(data);
-            return new ResponseEntity<>(repo.save(tarefa),HttpStatus.OK);
-        }else{          
-            return new ResponseEntity<>(repo.save(tarefa),HttpStatus.OK);
-        }    
+            return new ResponseEntity<>(repo.save(tarefa), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(repo.save(tarefa), HttpStatus.OK);
+        }
+    }
+
+    public ResponseEntity<?> deletar(int id) {
+        Tarefa tarefa = repo.findById(id);
+        repo.delete(tarefa);
+        mensagem.setMensagem("Tarefa Removida com sucesso");
+        return new ResponseEntity<>(mensagem, HttpStatus.OK);
     }
 }
